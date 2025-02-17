@@ -106,9 +106,15 @@ def update_task(request, id):
 
 def delete_task(request, id):
     if request.method == 'POST':
-        task = Task.objects.get(id=id)
-        task.delete()
-        messages.success(request, 'Task Deleted Successfully')
+        try:
+            task = Task.objects.get(id=id)
+            # Delete associated TaskDetail first
+            if hasattr(task, 'details'):
+                task.details.delete()
+            task.delete()
+            messages.success(request, 'Task Deleted Successfully')
+        except Exception as e:
+            messages.error(request, f'Error deleting task: {str(e)}')
         return redirect('manager-dashboard')
     else:
         messages.error(request, 'Something went wrong')
