@@ -70,4 +70,11 @@ class TaskModelForm(StyledFormMixin,forms.ModelForm):
             'assigned_to': forms.CheckboxSelectMultiple
         }
 
+
+class TaskDetailModelForm(StyledFormMixin,forms.ModelForm):
+    class Meta:
+        model = TaskDetail
+        fields = ['priority', 'notes']
+
+
     
