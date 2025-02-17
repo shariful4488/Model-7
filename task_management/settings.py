@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS =['https://*.onrender.com', 'http://127.0.0.1:8000']
 
-AUTH_USER_MODEL='users.customUser'
+#AUTH_USER_MODEL='users.customUser'
 # Application definition
 
 INSTALLED_APPS = [
@@ -94,17 +95,28 @@ WSGI_APPLICATION = 'task_management.wsgi.application'
 # }
 
 
-#For PostgreSQL
+# Database documentation https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'task_management',
-        'USER': 'postgres',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgresql://task_manager_db_7b94_user:PqHlth4aGSI7vqljRnoccuJivl4ESeku@dpg-cupn09i3esus738gibqg-a.oregon-postgres.render.com/task_manager_db_7b94',
+        conn_max_age=600
+    )
 }
+
+#For PostgreSQL
+#DATABASES = {
+ #   'default': {
+  #      'ENGINE': 'django.db.backends.postgresql',
+   #     'NAME': 'task_management',
+    #    'USER': 'postgres',
+     #   'PASSWORD': 'password',
+      #  'HOST': 'localhost',
+       # 'PORT': '5432'
+    #}
+#}
+
 
 
 # Password validation
