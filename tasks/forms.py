@@ -67,14 +67,14 @@ class TaskModelForm(StyledFormMixin,forms.ModelForm):
         fields = ['title', 'description', 'due_date', 'assigned_to']
         widgets = {
             'due_date': forms.SelectDateWidget,
-            'assigned_to': forms.CheckboxSelectMultiple
+             'assigned_to': forms.CheckboxSelectMultiple
         }
 
 
 class TaskDetailModelForm(StyledFormMixin,forms.ModelForm):
     class Meta:
         model = TaskDetail
-        fields = ['priority', 'notes']
+        fields = ['priority', 'notes','asset']
 
 
     
