@@ -19,7 +19,7 @@
             {% endif %}
         </div>
         <form method="POST" enctype="multipart/form-data">
-            <input type="text" class="border-2 border-gray-300 p-2 w-full" name="title" placeholder="Enter task title" required>
+
             {% csrf_token %}
             {{ task_form }}
             {{ task_detail_form }}
